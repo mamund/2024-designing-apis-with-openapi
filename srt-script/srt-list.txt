@@ -1,0 +1,13 @@
+# **********************************************************
+# person api 
+# simple test requests (SRTs)
+# 2020-02 mamund
+# **********************************************************
+
+# happy path
+https://virtserver.swaggerhub.com/amundsen/simple-api/1.0/collection/
+
+#
+# EOF
+#
+

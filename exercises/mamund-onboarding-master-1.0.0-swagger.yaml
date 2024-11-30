@@ -1,0 +1,552 @@
+openapi: 3.0.0
+
+#################################
+# BigCo Onboarding API
+# 2020-16-01
+# Design And Build Great APIs
+# Mike Amundsen (@mamund)
+#################################
+
+### general information block ###
+info:
+  version: '1.0.0'
+  title: 'BigCo Onboarding API'
+  description: 'This is the OAS document for BigCo **Onboarding API**'
+
+tags:
+  - name: onboarding
+    description: "Onboarding APIs"
+
+### mock server reference ###
+servers:
+# Added by API Auto Mocking Plugin
+  - description: SwaggerHub API Auto Mocking
+    url: https://virtserver.swaggerhub.com/mamund/onboarding-master/1.0.0
+
+### exposed paths for this API ###        
+paths:
+  
+  ### home ###
+  /:
+    get:
+      operationId: home
+      summary: Use this to retrieve the home page for the onboarding API
+      tags:
+      - onboarding
+      
+      parameters:
+        - $ref: "#/components/parameters/eTag"
+
+      responses:
+        '200':
+          $ref: "#/components/responses/reply"
+          
+        default:
+          $ref: "#/components/responses/error"
+
+  ### start ###
+  /start:
+    post:
+      operationId: startOnboarding
+      summary: Use this to start process of onboarding a customer
+      tags:
+      - onboarding
+    
+      parameters:
+        - $ref: "#/components/parameters/ifNoneMatch"
+    
+      requestBody:
+        $ref: "#/components/requestBodies/start"
+              
+      responses:
+        '201':
+          $ref: "#/components/responses/created"
+
+        default:
+          $ref: "#/components/responses/error"
+
+  ### work in progress list ##
+  /wip:
+    get:
+      operationId: wipList
+      summary: Use this to get a list of onboarding records
+      tags:
+      - onboarding
+    
+      parameters:
+        - $ref: "#/components/parameters/status"
+        - $ref: "#/components/parameters/eTag"
+          
+      responses:
+        '200':
+          $ref: "#/components/responses/reply"
+          
+        default:
+          $ref: "#/components/responses/error"
+                
+  ### work in progress record ###
+  /wip/{identifier}:
+    get:
+      operationId: wipItem
+      summary: Use this to return a single onboarding record
+      tags:
+      - onboarding
+    
+      parameters:
+        - $ref: "#/components/parameters/identifier"
+        - $ref: "#/components/parameters/eTag"
+        
+      responses:
+        '200':
+          $ref: "#/components/responses/reply"
+          
+        default:
+          $ref: "#/components/responses/error"
+
+  ### customer filter for WIP ###
+  /wip/{identifier}/customer:
+    get: 
+      operationId: getCustomerData
+      summary: Use this to get the customer data for this WIP record
+      tags:
+      - onboarding
+    
+      parameters:
+        - $ref: "#/components/parameters/identifier"
+        - $ref: "#/components/parameters/eTag"
+            
+      responses:
+        '200':
+          $ref: "#/components/responses/reply"
+          
+        default:
+          $ref: "#/components/responses/error"
+
+    put:
+      operationId: updateCustomerData
+      summary: Use this to update the customer data for this WIP record
+      tags:
+      - onboarding
+    
+      parameters:
+        - $ref: "#/components/parameters/identifier"
+        - $ref: "#/components/parameters/ifMatch"
+
+      requestBody:
+        $ref: "#/components/requestBodies/customer"
+
+      responses:    
+        '200':
+          $ref: "#/components/responses/reply"
+          
+        default:
+          $ref: "#/components/responses/error"
+
+  ### account filter for WIP ###
+  /wip/{identifier}/account:
+    get:
+      operationId: getAccountData
+      summary: Use this to get the account data for this WIP recxord
+      tags:
+      - onboarding
+    
+      parameters:
+        - $ref: "#/components/parameters/identifier"
+        - $ref: "#/components/parameters/eTag"
+            
+      responses:
+        '200':
+          $ref: "#/components/responses/reply"
+          
+        default:
+          $ref: "#/components/responses/error"
+
+    put:
+      operationId: updateAccountData
+      summary: Use this to update the account data for this WIP record
+      tags:
+      - onboarding
+    
+      parameters:
+        - $ref: "#/components/parameters/identifier"
+        - $ref: "#/components/parameters/ifMatch"
+
+      requestBody:
+        $ref: "#/components/requestBodies/account"
+
+      responses:    
+        '200':
+          $ref: "#/components/responses/reply"
+          
+        default:
+          $ref: "#/components/responses/error"
+
+  ### activity filter for WIP ###
+  /wip/{identifier}/activity:
+    get:
+      operationId: getActivityData
+      summary: Use this to get the activity data for this WIP recxord
+      tags:
+      - onboarding
+    
+      parameters:
+        - $ref: "#/components/parameters/identifier"
+        - $ref: "#/components/parameters/eTag"
+            
+      responses:
+        '200':
+          $ref: "#/components/responses/reply"
+          
+        default:
+          $ref: "#/components/responses/error"
+
+    put:
+      operationId: updateActivityData
+      summary: Use this to update the activity data for this WIP record
+      tags:
+      - onboarding
+    
+      parameters:
+        - $ref: "#/components/parameters/identifier"
+        - $ref: "#/components/parameters/ifMatch"
+
+      requestBody:
+        $ref: "#/components/requestBodies/activity"
+
+      responses:    
+        '200':
+          $ref: "#/components/responses/reply"
+          
+        default:
+          $ref: "#/components/responses/error"
+
+  ### status filter for WIP ###
+  /wip/{identifier}/status:
+    get:
+      operationId: getStatus
+      summary: Use this to get the status for this WIP recxord
+      tags:
+      - onboarding
+    
+      parameters:
+        - $ref: "#/components/parameters/identifier"
+        - $ref: "#/components/parameters/eTag"
+            
+      responses:
+        '200':
+              $ref: "#/components/responses/reply"
+          
+        default:
+          $ref: "#/components/responses/error"
+
+    put:
+      operationId: updateStatus
+      summary: Use this to update the status for this WIP record
+      tags:
+      - onboarding
+    
+      parameters:
+        - $ref: "#/components/parameters/identifier"
+
+      requestBody:
+        $ref: "#/components/requestBodies/status"
+
+      responses:    
+        '200':
+          $ref: "#/components/responses/reply"
+          
+        default:
+          $ref: "#/components/responses/error"
+    
+### shared components ###
+components:
+
+  ### request parameters ###    
+  parameters:
+    ifNoneMatch:
+      name: if-None-Match
+      description: Conditional Create Header
+      in: header
+      schema:
+        type: string
+        example: "*"
+        
+    ifMatch:
+      name: If-Match
+      description: Conditional Update Header
+      in: header
+      schema:
+          type: string
+          example: "zaxscdvfbg"
+    
+    eTag:
+      name: ETag
+      description: Conditional Read Header
+      in: header
+      schema:
+        type: string
+        example: "zaxscdvfbg"
+        
+    identifier:
+      name: identifier
+      description: record identifier
+      in: path
+      required: true
+      schema:
+        type: string
+
+    status:
+      name: status
+      description: status flag
+      in: query
+      schema:
+        type: string
+        enum:
+          - pending
+          - completed
+          - abandoned
+        example: "pending"
+      
+  ### request bodies ###
+  requestBodies:
+    start:
+      content:
+        application/x-www-form-urlencoded:
+          schema:
+            $ref: '#/components/schemas/start'
+        application/json:
+          schema:
+            $ref: '#/components/schemas/start'
+          
+    customer:
+      content:
+        application/x-www-form-urlencoded:
+          schema:
+            $ref: '#/components/schemas/customer'
+        application/json:
+          schema:
+            $ref: '#/components/schemas/customer'
+          
+    account:
+      content:
+        application/x-www-form-urlencoded:
+          schema:
+            $ref: '#/components/schemas/account'
+        application/json:
+          schema:
+            $ref: '#/components/schemas/account'
+          
+    activity:
+      content:
+        application/x-www-form-urlencoded:
+          schema:
+            $ref: '#/components/schemas/activity'
+        application/json:
+          schema:
+            $ref: '#/components/schemas/activity'
+          
+    status:
+      content:
+        application/x-www-form-urlencoded:
+          schema:
+            $ref: '#/components/schemas/status'
+        application/json:
+          schema:
+            $ref: '#/components/schemas/status'
+          
+  ### response bodies ###  
+  responses:
+    created:
+      description: Created
+      headers:
+        Location:
+          schema:
+            type: string
+          description: URL of created resource  
+          example: '/wip/123'
+
+    error:
+      description: unexpected error
+      content:
+        application/problem+json:
+          schema:
+            $ref: '#/components/schemas/error'
+        application/json:
+          schema:
+            $ref: '#/components/schemas/error'
+          
+    reply:
+      description: OK
+      content:
+        application/prag+json:
+          schema:
+            $ref: '#/components/schemas/reply'
+        application/json:
+          schema:
+            $ref: '#/components/schemas/reply'
+  
+  ### models ###
+  schemas:
+  
+    ### default error ###
+    error:
+      type: object
+      properties:
+        type: 
+          type: string
+          example: "Invalid Record"
+        title:
+          type: string
+          example: "One or more missing properties"
+        detail:
+          type: string
+          example: "Review the submitted record for missing required properties."
+
+    ### 200 OK reply ###
+    reply:
+      type: object
+      properties:
+        metadata:
+          type: array
+          items:
+            properties:
+              id:
+                type: string
+                example: "title"
+              value:
+                type: string
+                example: "BigCo Onboarding"
+        links:
+          type: array
+          items:
+            properties:
+              id:
+                type: string
+                example: "home"
+              href:
+                type: string
+                example: "http://api.example.org/"
+              title:
+                type: string
+                example: "Home Page"
+              method:
+                type: string
+                enum:
+                  - "GET"
+                  - "POST"
+                  - "PUT"
+                  - "PATCH"
+                  - "DELETE"
+                example: "GET"
+              properties:
+                type: array
+                items:
+                  properties:
+                    name:
+                      type: string
+                      example: ""
+                    value:
+                      type: string
+                      example: ""
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/wip'
+
+    ### define array of WIPs ###      
+    wipCollection:
+      type: array
+      items:
+        $ref: '#/components/schemas/wip'
+
+
+    ### internal work in progress record ###
+    wip:
+      type: object
+      properties:
+        wipIdentifier:
+          type: string
+          example: "q1w2e3r4"
+        customerIdentifier:
+          type: string
+          example: "w2e3r4t5"
+        accountIdentifier:
+          type: string
+          example: "e3r4t5y6"
+        activityIdentifier:
+          type: string
+          example: "r4t5y6u7"
+        givenName:
+          type: string
+          example: "Idara"
+        familyName:
+          type: string
+          example: "Adams"
+        email:
+          type: string
+          example: "idara.adams@example.org"
+        telephone:
+          type: string
+          example: "123.456.7890"
+        status:
+          type: string
+          example: "pending"
+        maxValue:
+          type: string
+          example: "5000"
+        discount:
+          type: string
+          example: "10"
+          
+    ### input model for starting onoboarding ###
+    start:
+      type: object
+      properties:
+        identifier: 
+          type: string
+          example: "q1w2e3r4"
+        
+    ### input model for customers ###    
+    customer:
+      type: object
+      properties:
+        identifier: 
+          type: string
+          example: "q1w2e3r4"
+        givenName:
+          type: string
+          example: "Idara"
+        familyName:
+          type: string
+          example: "Adams"
+
+    ### input model for accounts ###
+    account:
+      type: object
+      properties:
+        identifier:
+          type: string
+          example: "q1w2e3r4"
+  
+    ### input model for activities ###
+    activity:
+      type: object
+      properties:
+        identifier:
+          type: string
+          example: "q1w2e3r4"
+          
+    ### input model for status ###
+    status:
+      type: object
+      properties:
+        identifier:
+          type: string
+          example: "q1w2e3r4"
+        status:
+          type: string
+          enum:
+           - pending
+           - completed
+           - abandoned
+          example: "pending"
