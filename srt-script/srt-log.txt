@@ -1,0 +1,7 @@
+https://virtserver.swaggerhub.com/amundsen/simple-api/1.0/collection/
+[ {
+  "id" : "string",
+  "name" : "string",
+  "email" : "string",
+  "status" : "string"
+} ]https://virtserver.swaggerhub.com/amundsen/simple-api/1.0/fred

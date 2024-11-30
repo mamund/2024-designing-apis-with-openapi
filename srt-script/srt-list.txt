@@ -6,6 +6,7 @@
 
 # happy path
 https://virtserver.swaggerhub.com/amundsen/simple-api/1.0/collection/
+https://virtserver.swaggerhub.com/amundsen/simple-api/1.0/fred
 
 #
 # EOF

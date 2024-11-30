@@ -1,0 +1,20 @@
+
+Simple Request Tests (SRTs)
+================================
+Sat 30 Nov 2024 11:09:39 AM EST
+
+reading input file: srt-list.txt...
+
+start request run...
+
+https://virtserver.swaggerhub.com/amundsen/simple-api/1.0/collection/
+[ {
+  "id" : "string",
+  "name" : "string",
+  "email" : "string",
+  "status" : "string"
+} ]
+https://virtserver.swaggerhub.com/amundsen/simple-api/1.0/fred
+
+job completed.
+
