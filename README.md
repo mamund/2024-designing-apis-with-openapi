@@ -6,7 +6,8 @@
  ** 3.15pm-5pm (units 6, 7, 8)
  
 -->
-# Designing APIs with OpenAPI: Build the Right APIs the Right Way 
+# Designing APIs with OpenAPI
+_**Build the Right APIs the Right Way**_
 
 ## Mike Amundsen, *Author*
 
